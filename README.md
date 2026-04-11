@@ -36,7 +36,7 @@ Entity: orders
 
 - order_id: unique identifier for each order
 - user_id: unique identifier for each customer
-- eval_set: prior set is data collated
+- eval_set: prior set is data collected
 - order_number : sequence count per customer
 - order_dow: day of week the order was placed
 - order_hours_of_day: hour of the day the order were purchased
@@ -61,7 +61,7 @@ Recommendation:
 Dashboard:
 
 Limitation:
-- Dataser does not include revenue, cost and profit to further analyze the current fianncial health and effectiveness of marketing stretegies
+- Dataset does not include revenue, cost and profit to further analyze the current fianncial health and effectiveness of marketing stretegies
 
 
 
