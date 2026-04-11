@@ -1,4 +1,4 @@
-Instacart analysis project 
+## Instacart analysis project 
 
 #Instacart business analysis (SQL/Python/ Tableau) 
 
