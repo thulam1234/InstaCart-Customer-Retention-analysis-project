@@ -61,6 +61,9 @@ Recommendation:
 Dashboard:
 
 Limitation:
+- Dataser does not include revenue, cost and profit to further analyze the current fianncial health and effectiveness of marketing stretegies
+
+
 
 Dashboard:
 
