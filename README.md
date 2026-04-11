@@ -48,6 +48,7 @@ Entity: product
 - product_name : product’s name
 - aisle_id : foreign key linking to aisles table
 - department_id : foreign key linking to department table
+
 <img width="1011" height="711" alt="Screenshot 2026-04-11 at 1 35 51 PM" src="https://github.com/user-attachments/assets/4ac0f79b-df51-44fb-b473-9c3c23ab25aa" />
 
 
