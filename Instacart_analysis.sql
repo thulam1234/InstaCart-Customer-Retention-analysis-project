@@ -5,9 +5,9 @@
 SELECT *
 FROM order_products op 
 LIMIT 10;
-- this table contains order_id, product_id, add_to_cart_order, reordered 
-- need this to calculate reorder rate per product
-- checking for overall quality for oder_product table 
+---this table contains order_id, product_id, add_to_cart_order, reordered 
+--- need this to calculate reorder rate per product
+--- checking for overall quality for oder_product table 
 
 SELECT COUNT(order_id) AS count_order,
 	   COUNT (DISTINCT(product_id))AS count_product_id,
@@ -165,11 +165,13 @@ SELECT user_id,
 total_order,
 avg_days_between_orders ,
 CASE WHEN 
-total_order > 50 THEN 'High'
-WHEN total_order > 20 THEN 'Medium'
+total_order > 50 AND avg_days_between_orders < 10 THEN 'High'
+WHEN total_order > 20  AND avg_days_between_orders < 20 THEN 'Medium'
 ELSE 'Low'
 END AS Loyalty_tier
 FROM customer_loyalty
 ORDER BY total_order  DESC;
+
+--- categorized customer based on their purchase pattern 
 
 --- categorized customer based on their purchase pattern 
