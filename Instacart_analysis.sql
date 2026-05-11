@@ -1,4 +1,4 @@
-## Instacart analysis using SQL 
+--- Instacart analysis using SQL - Customer retention and reroder behavior analysis 
 
 --- checking for nulls and duplicates values 
 
@@ -13,7 +13,7 @@ SELECT COUNT(order_id) AS count_order,
 	   COUNT (DISTINCT(product_id))AS count_product_id,
 	   COUNT(add_to_cart_order) AS Count_cart_item,
 	   COUNT(reordered) AS count_reorder 
-FROM order_products op ; ---- N0 missing value 
+FROM order_products op ; -- N0 missing value 
 ---- checking nulls values for this one
 --- one order can have multiple product 
 --- check unique value for these order 
@@ -27,6 +27,7 @@ LIMIT 10;
 SELECT COUNT (aisle_id) AS count_ailse ,
 COUNT(aisle) AS ailse_count
 FROM aisles a ; --- no duplicate or null values 
+--- this table contains ailse 
 
 SELECT * 
 FROM departments d 
@@ -72,6 +73,7 @@ FROM orders o ;
 --- 206209 total customer 
 --- 24 hours/day 
 --- 10.44~ 10 days since last purchase 
+--- days_since_prior_order contains null values on every first purchase, there is no reorder in the first purchase 
 
 SELECT COUNT(*) AS expected_nulls
 FROM orders
@@ -82,14 +84,9 @@ SELECT COUNT(*) - COUNT(days_since_prior_order) AS null_count
 FROM orders;
 
 
-SELECT *
-FROM train_product tp 
-LIMIT 10;
---- This is train dataset from Kaggel which was created for Basket analysis
 
 --- No missing values found throughout all 6 tables 
-
----Data Explorations 
+--- General data exploration 
 --- Instacart Traffic Purchase analysis 
 ---What is the busiest hour of the day?
 SELECT  order_hour_of_day ,
@@ -104,39 +101,21 @@ ORDER BY COUNT(order_id) DESC;
 ---- the majority of daily orders (288,418 at peak)
 ---- Lowest traffic is 12AM-6AM
 ---- Business recommendation: schedule more drivers between 10AM-3PM, reduce overnight staffing
+---What are the top 10 reordered rate per product?  
 
----What are the top 20 order product?
-SELECT COUNT(op.order_id ) AS total_order,p.product_name 
-FROM order_products op  
-INNER JOIN products p   
-ON op.product_id   = p.product_id  
-GROUP BY product_name
-ORDER BY COUNT(op.order_id)DESC 
-LIMIT 20;
-
----What are the top 10 reorderef rate per product?  
-SELECT p.product_name  , ROUND(AVG(op.reordered ),2) AS average_reordered_rate 
+SELECT 
+    p.product_name, 
+    ROUND(AVG(op.reordered), 2) AS average_reordered_rate,  
+    COUNT(op.order_id) AS total_orders,
+    RANK() OVER (ORDER BY AVG(op.reordered) DESC) AS reorder_rank
 FROM order_products op 
-INNER JOIN products p  
-ON op.product_id   = p.product_id  
+INNER JOIN products p ON op.product_id = p.product_id  
 GROUP BY p.product_name 
 HAVING COUNT(op.order_id) > 100
-ORDER BY average_reordered_rate DESC
-LIMIT 10;
-
----Q3: What products and departments have the highest reorder rate?
-SELECT department, ROUND(AVG(op.reordered),2) as average_reordered , COUNT(order_id) AS toal_order
-FROM order_products op 
-INNER JOIN products p 
-ON op.product_id = p.product_id 
-INNER JOIN  departments d 
-ON d.department_id = p.department_id 
-GROUP BY d.department 
-ORDER BY average_reordered DESC;
---- What is the reoder rate during peak hours ?
-
----- What are the total order and reordered rate during peak hour by product? 
-
+ORDER BY average_reordered_rate DESC 
+LIMIT 10; 
+--- most of the top orders are organic products or daily use products which suggesting that consumer might be busy people who is lookign ways to stay healthy 
+--- it's critical to segment and provide appropriate recommendation to retain customers---> we can explore basket size from the top users 
 SELECT p.product_name,
        COUNT(op.order_id) AS total_orders,
        ROUND(AVG(op.reordered), 2) AS reorder_rate
@@ -151,27 +130,42 @@ HAVING COUNT(op.order_id) > 100
 ORDER BY reorder_rate DESC
 LIMIT 10;
 --- Top 3 products : Serenity Ultimate Extreme Overnight Pads, Clean & fresh 124 Loads Laundry and Maca Buttercups
+---Loyalty analysis 
 
+SELECT 
+    order_number,
+    COUNT(DISTINCT user_id) AS customers_at_this_order
+FROM orders
+WHERE order_number <= 20
+GROUP BY order_number
+ORDER BY order_number; --- Instacart loses ~10% of customers after the 4th order. Why, and how do we stop it 
 
---- how loyal is each customer? 
-
-WITH customer_loyalty AS (SELECT user_id ,
-COUNT(order_id) AS total_order ,
-ROUND(AVG(days_since_prior_order), 1) AS avg_days_between_orders
-FROM orders o 
-GROUP BY user_id
+WITH customer_max AS (
+    SELECT user_id, MAX(order_number) AS last_order
+    FROM orders
+    GROUP BY user_id
+),
+customer_type AS (
+    SELECT o.user_id,
+           CASE WHEN cm.last_order >= 6 THEN 'Stayed' 
+                ELSE 'Dropped' END AS status,
+           COUNT(DISTINCT p.department_id) AS dept_count,
+           COUNT(op.product_id) AS cart_size,
+           ROUND(AVG(op.reordered), 2) AS reorder_rate
+    FROM orders o
+    INNER JOIN customer_max cm ON o.user_id = cm.user_id
+    INNER JOIN order_products op ON o.order_id = op.order_id
+    INNER JOIN products p ON op.product_id = p.product_id
+    WHERE o.order_number <= 4
+    GROUP BY o.user_id, status
 )
-SELECT user_id,
-total_order,
-avg_days_between_orders ,
-CASE WHEN 
-total_order > 50 AND avg_days_between_orders < 10 THEN 'High'
-WHEN total_order > 20  AND avg_days_between_orders < 20 THEN 'Medium'
-ELSE 'Low'
-END AS Loyalty_tier
-FROM customer_loyalty
-ORDER BY total_order  DESC;
+SELECT status,
+       COUNT(*) AS customers,
+       ROUND(AVG(dept_count), 1) AS avg_departments,
+       ROUND(AVG(cart_size), 1) AS avg_cart_size,
+       ROUND(AVG(reorder_rate), 2) AS avg_reorder_rate
+FROM customer_type
+GROUP BY status;
+--- customers who stayed order 22% more than custoemr who dropped, which indicates that customer who is loyal to instacart te
+---tends to be people who order in bulk 
 
---- categorized customer based on their purchase pattern 
-
---- categorized customer based on their purchase pattern 
