@@ -52,6 +52,7 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 
  ### Retention analysis using SQL
  1. What is retention rate by order number?
+
     <img width="634" height="215" alt="Screenshot 2026-05-16 at 11 13 51 PM" src="https://github.com/user-attachments/assets/e87a2b55-dd71-4ae5-96f0-c0a109713a7e" />
     Retention dropped on average 10% after the fourth order, which suggesting that customer stopped or paused using the service after the fourth may caused by 
 
