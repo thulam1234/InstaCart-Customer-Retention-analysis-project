@@ -54,7 +54,28 @@ Instacart, an American grocery technology company and marketplace, facilitates s
  1. What is retention rate by order number?
 
     <img width="634" height="215" alt="Screenshot 2026-05-16 at 11 13 51 PM" src="https://github.com/user-attachments/assets/e87a2b55-dd71-4ae5-96f0-c0a109713a7e" />
-    Retention dropped on average 10% after the fourth order, which suggesting that customer stopped or paused using the service after the fourth may caused by 
+
+  Retention dropped by an average of 10% after the fourth order, indicating that customers stopped or paused using the service after the fourth order. This could be attributed to various factors, such as a lack of need for the app, delayed deliveries, or increased costs.
+
+2. What are the difference between loyal customer and churned customer?
+   <img width="758" height="72" alt="Screenshot 2026-05-16 at 11 33 27 PM" src="https://github.com/user-attachments/assets/649346ea-301c-47d4-b6a6-4c4a3634deb9" />
+
+ Roughly 20% of customers dropped compared to 80% who stayed. Customers who stayed tend to have a larger basket size, 20% more than churned customers, suggesting that the more customers purchase, the more likely they are to stay.
+
+3. <img width="431" height="196" alt="Screenshot 2026-05-16 at 11 44 55 PM" src="https://github.com/user-attachments/assets/2af45ac3-6ab8-44b8-9ba1-9121e20a548d" />
+   On average, customers who stayed order around 13-14 days compared to those who dropped order around 19-20 days, which means they don't find the need to purchase through InstaCart as frequently as the those who stayed.
+
+4.<img width="527" height="79" alt="Screenshot 2026-05-17 at 12 05 29 AM" src="https://github.com/user-attachments/assets/32b8ae7a-e432-4465-9535-ea7c51f35485" />
+5. <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
+6. <img width="632" height="209" alt="Screenshot 2026-05-17 at 12 06 08 AM" src="https://github.com/user-attachments/assets/0dd29196-e6c4-4071-8ec7-abbb66cb134f" />
+7.<img width="472" height="242" alt="Screenshot 2026-05-17 at 12 06 46 AM" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
+
+
+
+
+
+
+
 
 
  ### Classication and clustering model using Python 
