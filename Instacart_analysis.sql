@@ -42,13 +42,7 @@ SELECT *
 FROM products p 
 LIMIT 10; 
 --- This table contains aisle_id, department_id and product_id 
----Can use this table 
-
-SELECT *
-FROM products p 
-WHERE department_id = 21;
---- Department 21 is missing department. it contains variety of products.
-
+--- Can use this table 
  
 SELECT COUNT(DISTINCT(product_id)) AS total_product,
        COUNT(DISTINCT(product_name)) AS product_name ,
