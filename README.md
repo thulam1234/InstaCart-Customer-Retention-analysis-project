@@ -41,7 +41,7 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 ## Analysis and business questions:
 #### Exploratory analysis using Python 
   <img width="907" height="399" alt="Screenshot 2026-05-16 at 9 28 58 PM" src="https://github.com/user-attachments/assets/35fa2407-f6da-4c1c-8f81-7519b6967183" />
-     There’s a substantial high volume of orders throughout the week, particularly during weekends. Weekdays, on the other hand, have a stable volume of purchases. This can indicate the need for drivers to be more attentive and helpful on weekends to retain customers. Orders peak up to 60,000 on Saturday, which is around 25% more than the weekday average, which requires       roughly around 15%-20% more drivers.
+     There’s a substantial high volume of orders throughout the week, particularly during weekends. Weekdays, on the other hand, have a stable volume of purchases. This can indicate the need for drivers to be more attentive and helpful on weekends to retain customers. Orders peak up to 60,000 on Saturday, which is around 25% more than the weekday average, which requires   roughly around 15%-20% more drivers.
   
   <img width="888" height="414" alt="Screenshot 2026-05-16 at 9 46 28 PM" src="https://github.com/user-attachments/assets/02c348fb-649b-4e83-8b6b-486182a84e0e" />
   
@@ -62,10 +62,12 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 
  Roughly 20% of customers dropped compared to 80% who stayed. Customers who stayed tend to have a larger basket size, 20% more than churned customers, suggesting that the more customers purchase, the more likely they are to stay.
 
-3. <img width="431" height="196" alt="Screenshot 2026-05-16 at 11 44 55 PM" src="https://github.com/user-attachments/assets/2af45ac3-6ab8-44b8-9ba1-9121e20a548d" />
-   On average, customers who stayed order around 13-14 days compared to those who dropped order around 19-20 days, which means they don't find the need to purchase through InstaCart as frequently as those who stayed.
+3. What are the differences in purchase frequency between loyal customer or churned customer?
+   <img width="431" height="196" alt="Screenshot 2026-05-16 at 11 44 55 PM" src="https://github.com/user-attachments/assets/2af45ac3-6ab8-44b8-9ba1-9121e20a548d" />
+ 
+ On average, customers who stayed order around 13-14 days compared to those who dropped order around 19-20 days, which means they don't find the need to purchase through InstaCart as frequently as those who stayed.
 
-4.
+5.
    <img width="527" height="79" alt="Screenshot 2026-05-17 at 12 05 29 AM" src="https://github.com/user-attachments/assets/32b8ae7a-e432-4465-9535-ea7c51f35485" />
 6.
    <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
