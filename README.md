@@ -35,19 +35,20 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 - aisle_id : foreign key linking to aisles table
 - department_id : foreign key linking to department table
 
-<img width="1011" height="711" alt="Screenshot 2026-04-11 at 1 35 51 PM" src="https://github.com/user-attachments/assets/4ac0f79b-df51-44fb-b473-9c3c23ab25aa" />
+ <img width="1011" height="711" alt="Screenshot 2026-04-11 at 1 35 51 PM" src="https://github.com/user-attachments/assets/4ac0f79b-df51-44fb-b473-9c3c23ab25aa" />
 
 
 ## Analysis and business questions:
 #### Exploratory analysis using Python 
   <img width="907" height="399" alt="Screenshot 2026-05-16 at 9 28 58 PM" src="https://github.com/user-attachments/assets/35fa2407-f6da-4c1c-8f81-7519b6967183" />
-     There’s a substantial high volume of orders throughout the week, particularly during weekends. Weekdays, on the other hand, have a stable volume of purchases. This can indicate the need for drivers to be more attentive and helpful on weekends to retain customers. Orders peak up to 60,000 on Saturday, which is around 25% more than the weekday average, which requires   roughly around 15%-20% more drivers.
+        There’s a substantial high volume of orders throughout the week, particularly during weekends. Weekdays, on the other hand, have a stable volume of purchases. This can indicate the need for drivers to be more attentive and helpful on weekends to retain customers. Orders peak up to 60,000 on Saturday, which is around 25% more than the weekday average, which requires   roughly around 15%-20% more drivers.
   
   <img width="888" height="414" alt="Screenshot 2026-05-16 at 9 46 28 PM" src="https://github.com/user-attachments/assets/02c348fb-649b-4e83-8b6b-486182a84e0e" />
   
   High volume of purchases occurs around 10 a.m. to 3 p.m. During this time, it’s crucial to allocate sufficient drivers to ensure prompt delivery. Further analysis can involve optimizing driver routes to enhance service efficiency. Additionally, we can introduce an app feature that allows customers to select the preferred drop-off time, considering factors like the number of drivers, costs, and revenue. 60% of the total orders occur around 10 a.m. to 3 p.m. with peak orders at 10 a.m. 
   
   <img width="949" height="409" alt="Screenshot 2026-05-16 at 9 49 33 PM" src="https://github.com/user-attachments/assets/cf0a57e9-1f92-4052-a63c-e039d1dc06d3" />
+
  The interval between consecutive orders is the number of days between the previous order and the next one. From the graph, we can see that customers tend to place another order after seven days and 14 days. The longest interval between orders is 30 days, which indicates that the application may be experiencing performance issues when the gap between orders is 30 days.
 
  ### Retention analysis using SQL
@@ -71,31 +72,32 @@ On average, customers who stayed order around 13-14 days compared to those who d
 
   <img width="527" height="79" alt="Screenshot 2026-05-17 at 12 05 29 AM" src="https://github.com/user-attachments/assets/32b8ae7a-e432-4465-9535-ea7c51f35485" />
 
-2115 customer who have 2-3 orders with no reordered item, and 930 customers who have 4-10 orders with no reordered items. 
+Out of the 260K+ customers, 930 have 4-10 orders without any reordered items, while the remaining 1185 customers have 2-3 orders without any reordered items. 
 
-7.What's conversion rate between the first to the second and the first and fifth orders?
+7.7. What’s the conversion rate between the first and the second, and the first and fifth orders?
 
    <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
 
-Conversation dropped by 12% from the first to the fifth orders, which as result dropped in revenue. 
+The conversation dropped by 12% from the first to the fifth orders, resulting in a decrease in revenue. 
 
 9. Based on the previous question, what is the percentage of churned customers who dropped after previous orders?  
 
    <img width="632" height="209" alt="Screenshot 2026-05-17 at 12: 06: 08 AM" src="https://github.com/user-attachments/assets/0dd29196-e6c4-4071-8ec7-abbb66cb134f" />
 
-   Roughly 10% of customers churned after the fourth orders and continue to drop by 10% after that. 
+   Roughly 10% of customers churned after the fourth order and continued to drop by 10% after that. 
 
-7. What are the highest reorded rate and purchase volumn based on department?
+7. What are the highest reordered rate and purchase volumn based on department?
 
 <img width="472" height="242" alt="Screenshot 2026-05-17 at 12: 06: 46 AM" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
 
-* This will help uncover the insight we need to see what our customer customer purchase behavior which lead to furhther investigation in service enhancement.
+* This will help uncover the insight we need to see what our customers’ purchase behavior is, which will lead to further investigation in service enhancement.
 
 
-The top 3 department with high volume of orders and reordered rate are dairy eggs, ebverages and produce, which indicates that customers focus on purchasign high volume of daily produce. 
+The top 3 departments with the highest volume of orders and reorder rate are dairy eggs, beverages, and produce, which indicates that customers focus on purchasing a high volume of daily produce. 
 
 
- ### Classification and clustering model using Python 
+### Classification and clustering model using Python 
+     Using Python to run classification and clustering models allows us to uncover further insights and enhance our recommendation system. Classification models help us identify different purchase patterns, while clustering groups similar basket items together to provide personalized recommendations. These methods make shopping easier, increase basket size, and help retain customers. 
 
 ## Key Insights :
 
@@ -104,9 +106,7 @@ The top 3 department with high volume of orders and reordered rate are dairy egg
 ## Dashboard:
 
 Limitation:
-- The dataset lacks revenue, cost, and profit information, hindering the comprehensive analysis of the current financial health and effectiveness of marketing strategies.
-- Furthermore, the dataset does not include customer reviews, which prevents a deeper understanding of the reasons behind customer discontinuation of service usage.
-- Conducting a survey would provide valuable insights into the reasons behind customer service discontinuation, including personal reasons and delivery inefficiencies.
+The dataset lacks crucial financial information, including revenue, cost, and profit details, which hinders a comprehensive analysis of the current financial health and effectiveness of marketing strategies. Additionally, the absence of customer reviews prevents a deeper understanding of the reasons behind customer discontinuation of service usage. Conducting a survey would provide valuable insights into these reasons, including personal factors and delivery inefficiencies. Furthermore, including the time and date of purchase would enable the identification of more accurate churning patterns and the determination of customer volume throughout the month. 
 
 
 
