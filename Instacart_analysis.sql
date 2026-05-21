@@ -284,7 +284,7 @@ FROM (
     GROUP BY user_id
 ) customer_lifetime;
 
---- conversation dropped by 2% from the first to fifth purchase. 
+--- conversation dropped by 12% from the first to fifth purchase. 
 
 -- Calculate retention rate by order number
 WITH retention AS (
