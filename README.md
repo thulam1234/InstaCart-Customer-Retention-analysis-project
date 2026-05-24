@@ -74,19 +74,19 @@ On average, customers who stayed order around 13-14 days compared to those who d
 
 Out of the 260K+ customers, 930 have 4-10 orders without any reordered items, while the remaining 1185 customers have 2-3 orders without any reordered items. 
 
-7.7. What’s the conversion rate between the first and the second, and the first and fifth orders?
+6. What’s the conversion rate between the first and the second, and the first and fifth orders?
 
    <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
 
 The conversation dropped by 12% from the first to the fifth orders, resulting in a decrease in revenue. 
 
-9. Based on the previous question, what is the percentage of churned customers who dropped after previous orders?  
+7. Based on the previous question, what is the percentage of churned customers who dropped after previous orders?  
 
    <img width="632" height="209" alt="Screenshot 2026-05-17 at 12: 06: 08 AM" src="https://github.com/user-attachments/assets/0dd29196-e6c4-4071-8ec7-abbb66cb134f" />
 
    Roughly 10% of customers churned after the fourth order and continued to drop by 10% after that. 
 
-7. What are the highest reordered rate and purchase volumn based on department?
+8. What are the highest reordered rate and purchase volumn based on department?
 
 <img width="472" height="242" alt="Screenshot 2026-05-17 at 12: 06: 46 AM" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
 
@@ -94,6 +94,8 @@ The conversation dropped by 12% from the first to the fifth orders, resulting in
 
 
 The top 3 departments with the highest volume of orders and reorder rate are dairy eggs, beverages, and produce, which indicates that customers focus on purchasing a high volume of daily produce. 
+
+9. 
 
 
 ### Classification and clustering model using Python 
