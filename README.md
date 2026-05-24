@@ -15,7 +15,7 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 
 - order_id : Foreign key linking to each order
 - product_id: Foreign key linking to each product
-- add_to_cart: sequence in which product was added to card within that order
+- add_to_cart: sequence in which product was added to cart within that order
 - reordered: whether or not the customer ordered the product again
 
 # Entity: orders 
@@ -78,7 +78,7 @@ Out of the 260K+ customers, 930 have 4-10 orders without any reordered items, wh
 
    <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
 
-The conversation dropped by 12% from the first to the fifth orders, resulting in a decrease in revenue. 
+The conversion dropped by 12% from the first to the fifth orders, resulting in a decrease in revenue. 
 
 7. Based on the previous question, what is the percentage of churned customers who dropped after previous orders?  
 
@@ -86,7 +86,7 @@ The conversation dropped by 12% from the first to the fifth orders, resulting in
 
    Roughly 10% of customers churned after the fourth order and continued to drop by 10% after that. 
 
-8. What are the highest reordered rate and purchase volumn based on department?
+8. What are the highest reordered rate and purchase volume based on department?
 
 <img width="472" height="242" alt="Screenshot 2026-05-17 at 12: 06: 46 AM" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
 
