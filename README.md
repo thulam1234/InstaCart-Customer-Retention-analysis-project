@@ -18,7 +18,7 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 - add_to_cart: sequence in which product was added to cart within that order
 - reordered: whether or not the customer ordered the product again
 
-# Entity: orders 
+Entity: orders 
 
 - order_id: unique identifier for each order
 - user_id: unique identifier for each customer
@@ -28,7 +28,7 @@ Instacart, an American grocery technology company and marketplace, facilitates s
 - order_hours_of_day: hour of the day the order was purchased
 - days_since_prior_order : days since last order
 
-# Entity: product 
+Entity: product 
 
 - product_id: unique identifier of each product
 - product_name : product’s name
