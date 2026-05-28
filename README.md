@@ -95,9 +95,8 @@ The conversion dropped by 12% from the first to the fifth orders, resulting in a
 
 The top 3 departments with the highest volume of orders and reorder rate are dairy eggs, beverages, and produce, which indicates that customers focus on purchasing a high volume of daily produce. 
 
-### Classification and clustering model using Python 
-     Using Python to run classification and clustering models allows us to uncover further insights and enhance our recommendation system. Classification models help us identify different purchase patterns, while clustering groups similar basket items together to provide personalized recommendations. These methods make shopping easier, increase basket size, and help retain customers. 
-
+### Recommendation 
+Employed the data to implement recommendations on the application, enabling users to swiftly locate the items they require based on their previous purchases. Additionally, the system suggests complementary products that enhance customer satisfaction, thereby demonstrating the tangible benefits of the delivery service, which is characterized by its speed and accessibility. Furthermore, the recommendation system encourages increased purchases, thereby boosting revenue and customer retention. Another critical aspect that needs to be addressed is the optimization of the delivery schedule. This involves strategically allocating sufficient drivers to minimize bottlenecks and reduce wait times, ensuring that customers can fully benefit from the service provided.
 
 Limitation:
 The dataset lacks crucial financial information, including revenue, cost, and profit details, which hinders a comprehensive analysis of the current financial health and effectiveness of marketing strategies. Additionally, the absence of customer reviews prevents a deeper understanding of the reasons behind customer discontinuation of service usage. Conducting a survey would provide valuable insights into these reasons, including personal factors and delivery inefficiencies. Furthermore, including the time and date of purchase would enable the identification of more accurate churning patterns and the determination of customer volume throughout the month. 
