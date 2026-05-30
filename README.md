@@ -1,116 +1,143 @@
-## Instacart analysis project 
+# Instacart Analysis Project
 
-### Instacart business analysis (SQL/Python/ Tableau) 
+**Tools:** SQL · Python · Tableau
 
-## Executive summary: 
-Analyze Instacart data from 2017 with more than 3M+ orders to identify purchase patterns and customer purchase behavior.
+---
 
-## Objective:
+## Executive Summary
+
+Analysis of Instacart's 2017 dataset (3M+ orders) to identify purchase patterns and customer behavior, with the goal of improving retention through optimized product recommendations, marketing strategies, and promotional techniques.
+
+## Objective
+
 To discern purchasing patterns, we can identify actionable steps to retain customers by optimizing product recommendations, marketing strategies, and promotional techniques.
 
-## Overview:
-Instacart, an American grocery technology company and marketplace, facilitates same-day delivery and pickup services from retailers. Its primary objective is to provide delivery options for individuals seeking an efficient and expedited means of obtaining groceries from various grocery stores. Customer retention is paramount for driving business growth and revenue generation. By comprehending customer churn patterns, businesses can identify critical factors that influence customer segmentation and user understanding. This knowledge enables businesses to discern the factors that retain customers and the reasons behind customer attrition. 
+## Overview
 
-## Data overview: 
+Instacart is an American grocery technology company that facilitates same-day delivery and pickup from retailers. Customer retention is paramount for driving business growth — by understanding churn patterns, businesses can identify what keeps customers engaged and why others leave.
 
-- order_id : Foreign key linking to each order
-- product_id: Foreign key linking to each product
-- add_to_cart: sequence in which product was added to cart within that order
-- reordered: whether or not the customer ordered the product again
+---
 
-Entity: orders 
+## Data Overview
 
-- order_id: unique identifier for each order
-- user_id: unique identifier for each customer
-- eval_set: prior set of data collected
-- order_number : sequence count per customer
-- order_dow: day of the week the order was placed
-- order_hours_of_day: hour of the day the order was purchased
-- days_since_prior_order : days since last order
+**Entity: order_products**
 
-Entity: product 
+| Column | Description |
+|--------|-------------|
+| `order_id` | Foreign key linking to each order |
+| `product_id` | Foreign key linking to each product |
+| `add_to_cart` | Sequence in which product was added to cart |
+| `reordered` | Whether or not the customer ordered the product again |
 
-- product_id: unique identifier of each product
-- product_name : product’s name
-- aisle_id : foreign key linking to aisles table
-- department_id : foreign key linking to department table
+**Entity: orders**
 
- <img width="1011" height="711" alt="Screenshot 2026-04-11 at 1 35 51 PM" src="https://github.com/user-attachments/assets/4ac0f79b-df51-44fb-b473-9c3c23ab25aa" />
+| Column | Description |
+|--------|-------------|
+| `order_id` | Unique identifier for each order |
+| `user_id` | Unique identifier for each customer |
+| `eval_set` | Prior set of data collected |
+| `order_number` | Sequence count per customer |
+| `order_dow` | Day of the week the order was placed |
+| `order_hour_of_day` | Hour of the day the order was purchased |
+| `days_since_prior_order` | Days since last order |
 
+**Entity: products**
 
-## Analysis and business questions:
-#### Exploratory analysis using Python 
-  <img width="907" height="399" alt="Screenshot 2026-05-16 at 9 28 58 PM" src="https://github.com/user-attachments/assets/35fa2407-f6da-4c1c-8f81-7519b6967183" />
-        There’s a substantial high volume of orders throughout the week, particularly during weekends. Weekdays, on the other hand, have a stable volume of purchases. This can indicate the need for drivers to be more attentive and helpful on weekends to retain customers. Orders peak up to 60,000 on Saturday, which is around 25% more than the weekday average, which requires   roughly around 15%-20% more drivers.
-  
-  <img width="888" height="414" alt="Screenshot 2026-05-16 at 9 46 28 PM" src="https://github.com/user-attachments/assets/02c348fb-649b-4e83-8b6b-486182a84e0e" />
-  
-  High volume of purchases occurs around 10 a.m. to 3 p.m. During this time, it’s crucial to allocate sufficient drivers to ensure prompt delivery. Further analysis can involve optimizing driver routes to enhance service efficiency. Additionally, we can introduce an app feature that allows customers to select the preferred drop-off time, considering factors like the number of drivers, costs, and revenue. 60% of the total orders occur around 10 a.m. to 3 p.m. with peak orders at 10 a.m. 
-  
-  <img width="949" height="409" alt="Screenshot 2026-05-16 at 9 49 33 PM" src="https://github.com/user-attachments/assets/cf0a57e9-1f92-4052-a63c-e039d1dc06d3" />
+| Column | Description |
+|--------|-------------|
+| `product_id` | Unique identifier of each product |
+| `product_name` | Product name |
+| `aisle_id` | Foreign key linking to aisles table |
+| `department_id` | Foreign key linking to department table |
 
- The interval between consecutive orders is the number of days between the previous order and the next one. From the graph, we can see that customers tend to place another order after seven days and 14 days. The longest interval between orders is 30 days, which indicates that the application may be experiencing performance issues when the gap between orders is 30 days.
+<img width="800" alt="Entity relationship diagram" src="https://github.com/user-attachments/assets/4ac0f79b-df51-44fb-b473-9c3c23ab25aa" />
 
- ### Retention analysis using SQL
- 1. What is the retention rate by order number?
+---
 
-    <img width="634" height="215" alt="Screenshot 2026-05-16 at 11 13 51 PM" src="https://github.com/user-attachments/assets/e87a2b55-dd71-4ae5-96f0-c0a109713a7e" />
+## Analysis and Business Questions
 
-Retention dropped by an average of 10% after the fourth order, indicating that customers stopped or paused using the service after the fourth order. This could be attributed to various factors, such as a lack of need for the app, delayed deliveries, or increased costs.
+### Exploratory Analysis (Python)
 
-2. What are the differences between loyal customers and churned customers?
-   <img width="758" height="72" alt="Screenshot 2026-05-16 at 11 33 27 PM" src="https://github.com/user-attachments/assets/649346ea-301c-47d4-b6a6-4c4a3634deb9" />
+<img width="800" alt="Orders by day of week" src="https://github.com/user-attachments/assets/35fa2407-f6da-4c1c-8f81-7519b6967183" />
 
-Roughly 20% of customers dropped compared to 80% who stayed. Customers who stayed tend to have a larger basket size, 20% more than churned customers, suggesting that the more customers purchase, the more likely they are to stay.
+There's a substantial high volume of orders throughout the week, particularly during weekends. Weekdays have a stable volume of purchases. Orders peak up to 60,000 on Saturday — around 25% more than the weekday average — requiring roughly 15–20% more drivers.
 
-3. What are the differences in purchase frequency between loyal customer or churned customer?
-   <img width="431" height="196" alt="Screenshot 2026-05-16 at 11 44 55 PM" src="https://github.com/user-attachments/assets/2af45ac3-6ab8-44b8-9ba1-9121e20a548d" />
- 
-On average, customers who stayed order around 13-14 days compared to those who dropped order around 19-20 days, which means they don't find the need to purchase through InstaCart as frequently as those who stayed.
+<img width="800" alt="Orders by hour of day" src="https://github.com/user-attachments/assets/02c348fb-649b-4e83-8b6b-486182a84e0e" />
 
-5.what are customers who have multiple orders but no reordered items?
+High volume of purchases occurs around 10 a.m. to 3 p.m. During this time, it's crucial to allocate sufficient drivers to ensure prompt delivery. Further analysis can involve optimizing driver routes to enhance service efficiency. Additionally, we can introduce an app feature that allows customers to select a preferred drop-off time. 60% of total orders occur between 10 a.m. and 3 p.m., with peak orders at 10 a.m.
 
-  <img width="527" height="79" alt="Screenshot 2026-05-17 at 12 05 29 AM" src="https://github.com/user-attachments/assets/32b8ae7a-e432-4465-9535-ea7c51f35485" />
+<img width="800" alt="Days between orders" src="https://github.com/user-attachments/assets/cf0a57e9-1f92-4052-a63c-e039d1dc06d3" />
 
-Out of the 260K+ customers, 930 have 4-10 orders without any reordered items, while the remaining 1185 customers have 2-3 orders without any reordered items. 
+The interval between consecutive orders is the number of days between the previous and next order. Customers tend to place another order after 7 and 14 days. The longest interval is 30 days, which may indicate application performance issues when the gap between orders is that long.
 
-6. What’s the conversion rate between the first and the second, and the first and fifth orders?
+---
 
-   <img width="871" height="67" alt="Screenshot 2026-05-17 at 12 05 48 AM" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
+### Retention Analysis (SQL)
 
-The conversion dropped by 12% from the first to the fifth orders, resulting in a decrease in revenue. 
+**1. What is the retention rate by order number?**
 
-7. Based on the previous question, what is the percentage of churned customers who dropped after previous orders?  
+<img width="700" alt="Retention rate by order number" src="https://github.com/user-attachments/assets/e87a2b55-dd71-4ae5-96f0-c0a109713a7e" />
 
-   <img width="632" height="209" alt="Screenshot 2026-05-17 at 12: 06: 08 AM" src="https://github.com/user-attachments/assets/0dd29196-e6c4-4071-8ec7-abbb66cb134f" />
+Retention dropped by an average of 10% after the fourth order, indicating that customers stopped or paused using the service at that point. This could be attributed to a lack of need for the app, delayed deliveries, or increased costs.
 
-   Roughly 10% of customers churned after the fourth order and continued to drop by 10% after that. 
+**2. What are the differences between loyal and churned customers?**
 
-8. What are the highest reordered rate and purchase volume based on department?
+<img width="700" alt="Loyal vs churned customers" src="https://github.com/user-attachments/assets/649346ea-301c-47d4-b6a6-4c4a3634deb9" />
 
-<img width="472" height="242" alt="Screenshot 2026-05-17 at 12: 06: 46 AM" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
+Roughly 20% of customers churned compared to 80% who stayed. Customers who stayed tend to have a basket size 20% larger than churned customers, suggesting that higher purchase volume correlates with retention.
 
-* This will help uncover the insight we need to see what our customers’ purchase behavior is, which will lead to further investigation in service enhancement.
+**3. What are the differences in purchase frequency between loyal and churned customers?**
 
+<img width="700" alt="Purchase frequency comparison" src="https://github.com/user-attachments/assets/2af45ac3-6ab8-44b8-9ba1-9121e20a548d" />
 
-The top 3 departments with the highest volume of orders and reorder rate are dairy eggs, beverages, and produce, which indicates that customers focus on purchasing a high volume of daily produce. 
+On average, customers who stayed reorder every 13–14 days compared to churned customers who reordered every 19–20 days, meaning they don't find the need to use Instacart as frequently.
 
-### Recommendation 
-Employed the data to implement recommendations on the application, enabling users to swiftly locate the items they require based on their previous purchases. Additionally, the system suggests complementary products that enhance customer satisfaction, thereby demonstrating the tangible benefits of the delivery service, which is characterized by its speed and accessibility. Furthermore, the recommendation system encourages increased purchases, thereby boosting revenue and customer retention. Another critical aspect that needs to be addressed is the optimization of the delivery schedule. This involves strategically allocating sufficient drivers to minimize bottlenecks and reduce wait times, ensuring that customers can fully benefit from the service provided.
+**4. What are customers who have multiple orders but no reordered items?**
 
-Limitation:
-The dataset lacks crucial financial information, including revenue, cost, and profit details, which hinders a comprehensive analysis of the current financial health and effectiveness of marketing strategies. Additionally, the absence of customer reviews prevents a deeper understanding of the reasons behind customer discontinuation of service usage. Conducting a survey would provide valuable insights into these reasons, including personal factors and delivery inefficiencies. Furthermore, including the time and date of purchase would enable the identification of more accurate churning patterns and the determination of customer volume throughout the month. 
+<img width="700" alt="Customers with no reordered items" src="https://github.com/user-attachments/assets/32b8ae7a-e432-4465-9535-ea7c51f35485" />
 
+Out of 260K+ customers, 930 placed 4–10 orders without any reordered items, while 1,185 customers placed 2–3 orders without any reordered items.
 
+**5. What's the conversion rate between the first and second, and first and fifth orders?**
 
-Tools used :
-- SQL
-- Python
-- Tableau 
+<img width="700" alt="Conversion rate by order" src="https://github.com/user-attachments/assets/446e662f-52fb-415a-b240-7e3526b617d0" />
 
-## Table of Contents 
-Instacart Analysis 
-- Readme.md/final report
-- SQL data analysis
-- Python statistical analysis
-- Tableau 
+Conversion dropped by 12% from the first to the fifth order, resulting in a decrease in revenue.
+
+**6. What percentage of churned customers dropped off after previous orders?**
+
+<img width="700" alt="Churn percentage by order" src="https://github.com/user-attachments/assets/0dd29196-e6c4-4071-8ec7-abbb66cb134f" />
+
+Roughly 10% of customers churned after the fourth order and continued to drop by 10% at each subsequent order.
+
+**7. What are the highest reorder rate and purchase volume by department?**
+
+<img width="700" alt="Reorder rate and volume by department" src="https://github.com/user-attachments/assets/2e15029c-4988-4578-9f55-b1a74f09f044" />
+
+The top 3 departments by order volume and reorder rate are **dairy & eggs**, **beverages**, and **produce**, indicating that customers focus on purchasing high-volume daily essentials.
+
+---
+
+## Recommendations
+
+- **Personalized recommendations:** Use purchase history to surface reorder suggestions and complementary products, boosting engagement and basket size.
+- **Delivery schedule optimization:** Allocate drivers strategically around peak hours (10 a.m.–3 p.m.) and peak days (weekends) to reduce wait times.
+- **Drop-off time selection:** Introduce an in-app feature for customers to choose preferred delivery windows based on driver availability, cost, and demand.
+- **Re-engagement campaigns:** Target customers likely to churn after the fourth order with promotions or incentives before that threshold is reached.
+
+---
+
+## Limitations
+
+- **No financial data:** The dataset lacks revenue, cost, and profit figures, limiting assessment of marketing effectiveness.
+- **No customer reviews:** Absence of qualitative feedback prevents deeper analysis of churn reasons. A follow-up survey is recommended.
+- **No full timestamps:** Only day-of-week and hour-of-day are available — full date timestamps would enable month-level trend analysis and more precise churn detection.
+
+---
+
+## Table of Contents
+
+- `README.md` — Final report
+- `sql/` — Retention analysis queries
+- `python/` — Exploratory statistical analysis
+- `tableau/` — Dashboards and visualizations
